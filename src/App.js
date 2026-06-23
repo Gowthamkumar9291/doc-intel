@@ -44,7 +44,7 @@ const s = {
   resetBtn: { marginLeft: "auto", padding: "6px 14px", background: "transparent", border: `1px solid ${COLORS.border}`, color: COLORS.textSub, borderRadius: 6, fontSize: 12, cursor: "pointer" },
 };
 const API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${API_KEY}`;
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
 
 async function callGemini(prompt, base64, mimeType) {
   const resp = await fetch(GEMINI_URL, {
