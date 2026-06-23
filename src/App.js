@@ -135,10 +135,10 @@ function parseKeyPoints(text) {
   });
 
   const callClaude = async (messages, system) => {
-    const resp = await fetch("/api/v1/messages", {
+    const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.REACT_APP_GEMINI_API_KEY}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "x-api-key": process.env.REACT_APP_ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
-      body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 1000, system, messages }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: JSON.stringify(messages) }] }] }),
     });
     const data = await resp.json();
     if (data.error) throw new Error(data.error.message || "API error");
